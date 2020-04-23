@@ -29,4 +29,15 @@ object DataService {
         Product("Develops Logo Red","$23","shirt03"),
         Product("Develops Hustle","$16","shirt04"),
         Product("KickFlip Studios","$15","shirt05"))
+
+
+    fun getProducts(category : String) : List<Product>{
+
+        return when(category){
+            "SHIRTS" -> shirts
+            "HOODIES" -> hoodies
+            "HATS" -> hats
+            else -> listOf()
+        }
+    }
 }

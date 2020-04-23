@@ -11,7 +11,7 @@ import jonnyb.example.codeswag.R
 import jonnyb.example.codeswag.models.Category
 import kotlinx.android.synthetic.main.category_list_item.view.*
 
-class CategoryRecycleAdapter(val context : Context, val categories : List<Category> ) : RecyclerView.Adapter<CategoryRecycleAdapter.Holder>(){
+class CategoryRecycleAdapter(val context : Context, val categories : List<Category> , val itemClick : (Category) -> Unit) : RecyclerView.Adapter<CategoryRecycleAdapter.Holder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.category_list_item,parent,false)
@@ -24,7 +24,7 @@ class CategoryRecycleAdapter(val context : Context, val categories : List<Catego
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bindCategory(categories[position], context)
-    }
+}
 
 
     inner class Holder (itemView: View?) : RecyclerView.ViewHolder(itemView!!)
@@ -40,6 +40,7 @@ class CategoryRecycleAdapter(val context : Context, val categories : List<Catego
 
             categoryTxt?.text = category.title
             categoryImg?.setImageResource(resourceId)
+            categoryImg?.setOnClickListener { itemClick(category) }
         }
     }
 }
